@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as readline from "readline";
-import { z } from "zod";
+import { z, ZodSafeParseResult } from "zod";
 
 /**
  * This is a JSDoc comment. Similar to JavaDoc, it documents a public-facing
@@ -17,7 +17,7 @@ import { z } from "zod";
  */
 
 
-export async function parseCSV<T>(path: string, schema?: z.ZodType<T>): Promise<T[] | z.ZodError | string[][]> {
+export async function parseCSV<T>(path: string, schema?: z.ZodType<T>): Promise< ZodSafeParseResult<T>[] | string[][]> {
   const fileStream = fs.createReadStream(path);
   const rl = readline.createInterface({
     input: fileStream,
@@ -25,14 +25,11 @@ export async function parseCSV<T>(path: string, schema?: z.ZodType<T>): Promise<
   });
 
   if(schema){
-    const rows: T[] = []
+    const rows: ZodSafeParseResult<T>[] = [];
     for await (const line of rl) {
       const values = line.split(",").map((v) => v.trim());
       const parsed = schema.safeParse(values);
-      if(!parsed.success){
-        return parsed.error;
-      }
-      rows.push(parsed.data);
+      rows.push(parsed);
     }
     return rows;
   } else{
