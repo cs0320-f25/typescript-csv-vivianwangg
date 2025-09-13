@@ -57,20 +57,49 @@ Performance & Scalability:
 
 - #### 1. Correctness
 
+1. Each line in the CSV file should be read as a row.
+2. Within a row, fields should be separated correctly. The parser should not introduce extra fields or combine fields incorrectly.
+3. If a field is wrapped in quotes, the parser should respect it as a single value, even if it contains commas inside.
+4. When using a schema, each parsed field should either match the expected type or return an error.
+
 - #### 2. Random, On-Demand Generation
 
+Instead of only checking a few specific example csvs that I have written (which are only a few lines each), with
+random, on-demand generation, I could expand testing to larger data sets with more variety in structure. These data
+sets might also include further edge cases and more complicated scenarios which I have not thought of in my own
+csv testing files.
+
 - #### 3. Overall experience, Bugs encountered and resolved
+  This sprint differed from prior programming assignments as it is the first assignment I've done in Typescript and first
+  time working with the concept of a parser. There was definitely a learning curve but I feel more comfortable with these
+  topics now.
 
 #### Errors/Bugs:
 
+I encountered bugs/errors with syntax and types. In particular, I was unsure of what the return type of my
+parser function should be and how to implement it in a way that is consistent with the original tests from task A. I
+solved this issue by talking with peers/TAs in collab hours.
+
 #### Tests:
+
+In task A, I tried to test edge cases and potentially unexpected inputs. I also looked at the basic parser implementation
+and guessed at what would make it parse a file incorrectly. In task C, I tested each return case of my parser: when no schema was
+provided, when a schema was provided and all lines were correctly formatted, when a schema was provided but some lines
+were incorrectly formatted.
 
 #### How To…
 
+N/A?
+
 #### Team members and contributions (include cs logins):
+
+See collaborators
 
 #### Collaborators (cslogins of anyone you worked with on this project and/or generative AI):
 
-#### Total estimated time it took to complete project:
+jcasale - discussed parser return types during collab hours
+ChatGPT helped explain the concept of union types and use cases/expected behavior of a parser
 
-#### Link to GitHub Repo:
+#### Total estimated time it took to complete project: 8 hours
+
+#### Link to GitHub Repo: https://github.com/cs0320-f25/typescript-csv-vivianwangg
