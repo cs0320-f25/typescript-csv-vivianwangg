@@ -12,12 +12,15 @@ test("parseCSV parses CSV with all successful rows", async () => {
     const result = await parseCSV(CORRECT_CSV_PATH, schema);
 
     result.forEach((row) => {
-      if ("success" in row) {
         expect(row.success).toBe(true);
-      } else {
-        throw new Error("Expected ZodSafeParseResult");
-      }
     });
+
+    const parsedData = result.map((row) => row.data);
+    expect(parsedData).toEqual([
+        ["Alice", 23],
+        ["Bob", 30],
+        ["Charlie", 25],
+    ]);
 }); 
 
 test("returns ZodSafeParseResult[] when schema is provided and some rows are invalid", async () => {
@@ -25,13 +28,9 @@ test("returns ZodSafeParseResult[] when schema is provided and some rows are inv
 
   const result = await parseCSV(INCORRECT_CSV_PATH, schema);
 
-  if ("success" in result[0] && "success" in result[1] && "success" in result[2]) {
-    expect(result[0].success).toBe(true); 
-    expect(result[1].success).toBe(false);  
-    expect(result[2].success).toBe(true);   
-  } else {
-    throw new Error("Expected ZodSafeParseResult[], got string[][]");
-  }
+expect(result[0].success).toBe(true); 
+expect(result[1].success).toBe(false);  
+expect(result[2].success).toBe(true);   
 });
 
 test("returns string[][] when no schema is provided", async () => {
