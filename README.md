@@ -97,7 +97,7 @@ See collaborators
 
 #### Collaborators (cslogins of anyone you worked with on this project and/or generative AI):
 
-jcasale - discussed parser return types during collab hours
+jgcasale - discussed parser return types during collab hours
 ChatGPT helped explain the concept of union types and use cases/expected behavior of a parser
 
 #### Total estimated time it took to complete project: 8 hours

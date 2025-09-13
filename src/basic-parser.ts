@@ -16,6 +16,16 @@ import { z, ZodSafeParseResult } from "zod";
  * @returns a "promise" to produce a 2-d array of cell values
  */
 
+/**
+ * Reads a CSV file and returns its rows.
+ * - If no schema is given, returns an array of string arrays.
+ * - If a Zod schema is given, validates each row and returns an array of 
+ *    ZodSafeParseResult objects.
+ *
+ * @param path   Path to the CSV file.
+ * @param schema Optional Zod schema to validate each row.
+ * @returns      Parsed rows as array of ZodSafeParseResult or string[][]
+ */
 
 export async function parseCSV<T>(path: string, schema?: z.ZodType<T>): Promise< ZodSafeParseResult<T>[] | string[][]> {
   const fileStream = fs.createReadStream(path);
