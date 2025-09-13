@@ -71,14 +71,12 @@ csv testing files.
 
 - #### 3. Overall experience, Bugs encountered and resolved
   This sprint differed from prior programming assignments as it is the first assignment I've done in Typescript and first
-  time working with the concept of a parser. There was definitely a learning curve but I feel more comfortable with these
-  topics now.
+  time working with the concept of a parser. In particular, I was unsure of what the return type of my parser function should be and how to implement it in a way that is consistent with the original tests from task A. I solved this issue by talking with peers/TAs in collab hours. There was definitely a learning curve but I feel more comfortable with these topics now.
 
 #### Errors/Bugs:
 
-I encountered bugs/errors with syntax and types. In particular, I was unsure of what the return type of my
-parser function should be and how to implement it in a way that is consistent with the original tests from task A. I
-solved this issue by talking with peers/TAs in collab hours.
+There are still existing errors in this parser that violate the user stories from task B. For instance, under the
+current implementation, having commas in a quoted field will not parse correctly.
 
 #### Tests:
 
@@ -87,9 +85,16 @@ and guessed at what would make it parse a file incorrectly. In task C, I tested 
 provided, when a schema was provided and all lines were correctly formatted, when a schema was provided but some lines
 were incorrectly formatted.
 
+These tests are located in two separate test files:
+
+1. basic-parser.test.ts includes my tests after task A (no schema inputs) [TASK A]
+2. schema-parser.test.ts includes my tests with schema inputs [TASK C]
+
 #### How To…
 
-N/A?
+to run run-parser.ts: npm run run
+to run basic-parser unit tests with no schema input (task A): npm test basic-parser.test.ts
+to run tests with schema inputs (task C): npm test schema-parser.test.ts
 
 #### Team members and contributions (include cs logins):
 
